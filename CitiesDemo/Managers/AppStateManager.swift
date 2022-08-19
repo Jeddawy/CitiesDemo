@@ -49,7 +49,8 @@ class AppStateManager {
 
     func switchToHomeState() {
         let citiesVC = CitiesViewController.create()
-        self.mainWindow?.rootViewController = citiesVC
+        let nav = UINavigationController(rootViewController: citiesVC)
+        self.mainWindow?.rootViewController = nav
     }
     
 }
