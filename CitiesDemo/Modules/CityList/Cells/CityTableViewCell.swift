@@ -13,7 +13,6 @@ class CityTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var mapImageView: UIImageView!
-    @IBOutlet weak var countryCodeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,8 +26,7 @@ class CityTableViewCell: UITableViewCell {
     }
     
     func configureCell(model: City){
-        self.cityLabel.text = "City: \(model.name ?? "")"
-        self.countryCodeLabel.text = "County Code: \(model.country ?? "")"
+        self.cityLabel.text = "City: \(model.name ?? ""), \(model.country ?? "")"
         self.bindImage(lat: model.coord?.lat ?? "", lon: model.coord?.lon ?? "")
     }
     

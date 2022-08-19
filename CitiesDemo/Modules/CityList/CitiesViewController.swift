@@ -29,6 +29,7 @@ extension CitiesViewController{
         super.viewDidLoad()
         self.presenter.loadCities()
         setupTableView()
+        setViewControllerTitle(to: "Cities")
         // Do any additional setup after loading the view.
     }
 }
@@ -78,7 +79,8 @@ extension CitiesViewController: CitiesViewControllerProtocol{
     }
     
     func goToCityDetails(city: City) {
-        //
+        let vc = CityDetailsViewController.create(city: city)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
