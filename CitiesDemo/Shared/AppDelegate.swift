@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-
+import GoogleMaps
 protocol AppDelegateProtocol {
     func getMainWindow() -> UIWindow?
 }
@@ -20,11 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         AppStateManager.shared().lunch(appDelegate: self)
-
+        setGoogleMpasKey()
         return true
     }
 
 
+    func setGoogleMpasKey() {
+        GMSServices.provideAPIKey(GoogleAPIKey.Key)
+    }
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
