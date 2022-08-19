@@ -1,0 +1,30 @@
+PODS:
+  - Alamofire (5.0.5)
+  - GoogleMaps (6.1.1):
+    - GoogleMaps/Maps (= 6.1.1)
+  - GoogleMaps/Base (6.1.1)
+  - GoogleMaps/Maps (6.1.1):
+    - GoogleMaps/Base
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.5)
+  - GoogleMaps (= 6.1.1)
+  - SDWebImage (~> 5.8.1)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - GoogleMaps
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  GoogleMaps: 94e6e0851beece6678af9f508f4918b7a7c61722
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+
+PODFILE CHECKSUM: a291ef60e5841dfa7fd36395dfbc1fd9b4753f5a
+
+COCOAPODS: 1.11.2
