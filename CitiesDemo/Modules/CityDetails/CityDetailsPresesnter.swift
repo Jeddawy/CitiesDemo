@@ -12,7 +12,6 @@ import GoogleMaps
 class CityDetailsPresenter{
     private weak var view: CityDetailsViewControllerProtocol?
     private var city: City!
-    private var station: Station!
     
     init(view: CityDetailsViewControllerProtocol, city: City){
         self.city = city
