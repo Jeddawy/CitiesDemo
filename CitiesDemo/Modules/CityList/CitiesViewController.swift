@@ -9,6 +9,7 @@ import UIKit
 
 class CitiesViewController: UIViewController {
     //MARK: - Outlets
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     
     //MARK: - Variables
@@ -30,6 +31,7 @@ extension CitiesViewController{
         self.presenter.loadCities()
         setupTableView()
         setViewControllerTitle(to: "Cities")
+        searchBar.delegate = self
         // Do any additional setup after loading the view.
     }
 }
@@ -91,5 +93,14 @@ extension CitiesViewController{
         tableview.dataSource = self
         let nib = UINib(nibName: CityTableViewCell.ID, bundle: nil)
         tableview.register(nib, forCellReuseIdentifier: CityTableViewCell.ID)
+    }
+}
+
+//MARK: - UI SearChBar
+extension CitiesViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText:String)
+    {
+        presenter.didTypeText(with: searchText)
+       
     }
 }
