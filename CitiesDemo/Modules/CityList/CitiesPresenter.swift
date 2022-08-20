@@ -12,8 +12,14 @@ class CitiesPresenter{
     private weak var view: CitiesViewControllerProtocol?
     private var pageNumber: Int = 1
     private var cities: [City]?
-    private var cityList: [SaveCityModel]?
+    private var cityList: [SaveCityModel]?{
+        didSet{
+            self.view?.updateTableview()
+        }
+    }
+    private var retreivedCities: [SaveCityModel]?
     private var savedCities = SavedCitiesManager()
+    private var isFiltering = false
     init(view: CitiesViewControllerProtocol){
         self.view = view
     }
@@ -27,16 +33,23 @@ extension CitiesPresenter: CitiesPresenterProtocol{
             self.cities = nil
             self.getCities()
         }else{
-//            self.cityList = savedCities.getSaveCities()
-            self.cityList = savedCities.getQueryCity(with: "Ben")
+            self.retreivedCities = savedCities.getSavedBatchedCities()
+            self.cityList = self.retreivedCities
         }
     }
     
     func getNextPaginationPage() {
         //TODO: - refactor this
+        if isFiltering{
+            return
+        }
         let savedcount = savedCities.getCitiesCount()
         pageNumber = (savedcount/50)
-        if pageNumber < lastPage {
+        print(savedcount, pageNumber)
+        if self.retreivedCities?.count ?? 0 < savedcount{
+            self.retreivedCities = savedCities.getSavedBatchedCities()
+            self.cityList = self.retreivedCities
+        }else if pageNumber < lastPage {
             pageNumber += 1
             self.getCities()
         }
@@ -60,7 +73,16 @@ extension CitiesPresenter: CitiesPresenterProtocol{
         return self.cityList?.count ?? 0
     }
     
-    
+    func didTypeSearch(searchText: String) {
+        if searchText.isEmpty{
+            isFiltering = false
+            self.cityList = retreivedCities
+            return
+        }
+        isFiltering = true
+        self.cityList = retreivedCities?.filter({ $0.name.hasPrefix(searchText)})
+        print(self.cityList?.count, searchText, "retreivedcitites", retreivedCities)
+    }
     
 }
 extension CitiesPresenter{
