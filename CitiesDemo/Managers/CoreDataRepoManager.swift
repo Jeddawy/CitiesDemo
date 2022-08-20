@@ -36,29 +36,6 @@ class CoreDataRepository<T: NSManagedObject> {
     }
     
     @discardableResult
-    func query(with: String) -> [T]? {
-        let EntityName = getEntityName(type: T.self)
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName)
-        request.predicate = NSPredicate(format: with)
-        let objects = try? context!.fetch(request) as? [T]
-        return objects
-    }
-    
-    @discardableResult
-    func register(value: T) -> T?{
-        
-        var result = false
-        do {
-            try context!.save()
-            result = true
-        } catch _ as NSError {
-         result = false
-        }
-        return result == true ? value : nil
-        
-    }
-    
-    @discardableResult
     func deleteAll() -> [T]? {
            let EntityName = getEntityName(type: T.self)
            let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName)
