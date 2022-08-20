@@ -12,6 +12,8 @@ class CitiesPresenter{
     private weak var view: CitiesViewControllerProtocol?
     private var pageNumber: Int = 1
     private var cities: [City]?
+    private var cityList: [SaveCityModel]?
+    private var savedCities = SavedCitiesManager()
     init(view: CitiesViewControllerProtocol){
         self.view = view
     }
@@ -19,33 +21,43 @@ class CitiesPresenter{
 
 extension CitiesPresenter: CitiesPresenterProtocol{
     func loadCities() {
-        self.pageNumber = 1
-        self.cities = nil
-        self.getCities()
+        if savedCities.getCitiesCount() == 0 {
+            self.pageNumber = 1
+            self.cityList = nil
+            self.cities = nil
+            self.getCities()
+        }else{
+//            self.cityList = savedCities.getSaveCities()
+            self.cityList = savedCities.getQueryCity(with: "Ben")
+        }
     }
     
     func getNextPaginationPage() {
+        //TODO: - refactor this
+        let savedcount = savedCities.getCitiesCount()
+        pageNumber = (savedcount/50)
         if pageNumber < lastPage {
             pageNumber += 1
             self.getCities()
         }
+        
     }
     
     func didTapCity(at index: Int) {
-        if index >= 0 && index < (cities?.count ?? 0), let city = cities?[index]{
+        if index >= 0 && index < (cityList?.count ?? 0), let city = cityList?[index]{
             self.view?.goToCityDetails(city: city)
         }
     }
     
-    func getCity(at index: Int) -> City {
-        if index < cities?.count ?? 0 && index >= 0 {
-            return cities?[index] ?? City()
+    func getCity(at index: Int) -> SaveCityModel {
+        if index < cityList?.count ?? 0 && index >= 0 {
+            return cityList?[index] ?? SaveCityModel()
         }
-        return City()
+        return SaveCityModel()
     }
     
     func citiesCount() -> Int {
-        return cities?.count ?? 0
+        return self.cityList?.count ?? 0
     }
     
     
@@ -63,12 +75,27 @@ extension CitiesPresenter{
                 guard let cities = result else {return}
                     if self.cities != nil {
                         self.cities? += cities
+                        self.handleCity(cities)
                     } else {
                         self.cities = cities
+                        self.handleCity(cities)
                     }
-                self.view?.updateTableview()
             }
             self.view?.hideLoader()
+        }
+    }
+}
+
+extension CitiesPresenter{
+    private func handleCity(_ cities: [City]?){
+        if let cities = cities {
+            var cityList = [SaveCityModel]()
+            for city in cities {
+                cityList.append(SaveCityModel(city: city))
+                savedCities.addNewCity(city)
+            }
+            self.cityList = savedCities.getSaveCities()
+            self.view?.updateTableview()
         }
     }
 }

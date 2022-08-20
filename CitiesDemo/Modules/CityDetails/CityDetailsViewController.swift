@@ -16,7 +16,7 @@ class CityDetailsViewController: UIViewController {
     private var presenter: CityDetailsPresenterProtocol!
     
     // MARK: - Public Methods
-    class func create(city: City) -> CityDetailsViewController {
+    class func create(city: SaveCityModel) -> CityDetailsViewController {
         let VC: CityDetailsViewController = CityDetailsViewController()
         VC.presenter = CityDetailsPresenter(view: VC, city: city)
         return VC

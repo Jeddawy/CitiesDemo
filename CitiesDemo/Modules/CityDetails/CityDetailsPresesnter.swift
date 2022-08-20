@@ -11,9 +11,9 @@ import UIKit.UIImage
 import GoogleMaps
 class CityDetailsPresenter{
     private weak var view: CityDetailsViewControllerProtocol?
-    private var city: City!
+    private var city: SaveCityModel!
     
-    init(view: CityDetailsViewControllerProtocol, city: City){
+    init(view: CityDetailsViewControllerProtocol, city: SaveCityModel){
         self.city = city
         self.view = view
     }
@@ -29,7 +29,7 @@ extension CityDetailsPresenter: CityDetailsPresenterProtocol{
 
 extension CityDetailsPresenter{
     private func setupStation(){
-        let position = CLLocationCoordinate2D(latitude: self.city.coord?.lat?.toDouble() ?? 0, longitude: self.city.coord?.lon?.toDouble() ?? 0)
+        let position = CLLocationCoordinate2D(latitude: self.city.lat.toDouble() ?? 0, longitude: self.city.lng.toDouble() ?? 0)
         self.view?.setup(coordinate: position, title: "\(city.name ?? ""), \(city.country ?? "")")
     }
 }

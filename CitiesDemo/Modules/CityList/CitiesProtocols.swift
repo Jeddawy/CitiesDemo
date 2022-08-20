@@ -12,13 +12,13 @@ protocol CitiesViewControllerProtocol: AnyObject {
     func hideLoader()
     func updateTableview()
     func showError(error: String)
-    func goToCityDetails(city: City)
+    func goToCityDetails(city: SaveCityModel)
 }
 
 protocol CitiesPresenterProtocol{
     func loadCities()
     func getNextPaginationPage()
     func didTapCity(at index: Int)
-    func getCity(at index: Int) -> City
+    func getCity(at index: Int) -> SaveCityModel
     func citiesCount() -> Int
 }

@@ -78,7 +78,7 @@ extension CitiesViewController: CitiesViewControllerProtocol{
         self.showAlert(error)
     }
     
-    func goToCityDetails(city: City) {
+    func goToCityDetails(city: SaveCityModel) {
         let vc = CityDetailsViewController.create(city: city)
         self.navigationController?.pushViewController(vc, animated: true)
     }

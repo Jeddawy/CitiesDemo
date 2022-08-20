@@ -25,9 +25,9 @@ class CityTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(model: City){
+    func configureCell(model: SaveCityModel){
         self.cityLabel.text = "City: \(model.name ?? ""), \(model.country ?? "")"
-        self.bindImage(lat: model.coord?.lat ?? "", lon: model.coord?.lon ?? "")
+        self.bindImage(lat: model.lat ?? "", lon: model.lng ?? "")
     }
     
     private func bindImage(lat: String, lon: String){
