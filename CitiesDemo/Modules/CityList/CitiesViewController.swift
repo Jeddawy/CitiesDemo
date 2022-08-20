@@ -100,7 +100,7 @@ extension CitiesViewController{
 extension CitiesViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText:String)
     {
-        presenter.didTypeText(with: searchText)
+        presenter.didTypeSearch(searchText: searchText)
        
     }
 }

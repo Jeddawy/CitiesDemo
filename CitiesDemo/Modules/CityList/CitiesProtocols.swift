@@ -21,4 +21,5 @@ protocol CitiesPresenterProtocol{
     func didTapCity(at index: Int)
     func getCity(at index: Int) -> SaveCityModel
     func citiesCount() -> Int
+    func didTypeSearch(searchText: String)
 }
