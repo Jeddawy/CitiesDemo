@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042AA4BD28B1007E00C2A5E9 /* CoreDataRepoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AA4BC28B1007E00C2A5E9 /* CoreDataRepoManager.swift */; };
+		042AA4BF28B1010E00C2A5E9 /* SavedCitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AA4BE28B1010E00C2A5E9 /* SavedCitiesManager.swift */; };
 		04B05B0D28AF9E7300789458 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B05B0C28AF9E7300789458 /* AppDelegate.swift */; };
 		04B05B1728AF9E7300789458 /* CitiesDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04B05B1528AF9E7300789458 /* CitiesDemo.xcdatamodeld */; };
 		04B05B1928AF9E7500789458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B05B1828AF9E7500789458 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042AA4BC28B1007E00C2A5E9 /* CoreDataRepoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepoManager.swift; sourceTree = "<group>"; };
+		042AA4BE28B1010E00C2A5E9 /* SavedCitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCitiesManager.swift; sourceTree = "<group>"; };
 		04B05B0928AF9E7300789458 /* CitiesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B05B0C28AF9E7300789458 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04B05B1628AF9E7300789458 /* CitiesDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CitiesDemo.xcdatamodel; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				04B05B0C28AF9E7300789458 /* AppDelegate.swift */,
+				042AA4BE28B1010E00C2A5E9 /* SavedCitiesManager.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				04B05B7028AFBFAE00789458 /* AppStateManager.swift */,
+				042AA4BC28B1007E00C2A5E9 /* CoreDataRepoManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -641,7 +647,9 @@
 				04B05B6028AFABB300789458 /* CitiesResponse.swift in Sources */,
 				04B05B5128AFA72F00789458 /* CitiesViewController.swift in Sources */,
 				04B05B1728AF9E7300789458 /* CitiesDemo.xcdatamodeld in Sources */,
+				042AA4BF28B1010E00C2A5E9 /* SavedCitiesManager.swift in Sources */,
 				04B05B7128AFBFAE00789458 /* AppStateManager.swift in Sources */,
+				042AA4BD28B1007E00C2A5E9 /* CoreDataRepoManager.swift in Sources */,
 				04B05B6B28AFB7BC00789458 /* String+Extension.swift in Sources */,
 				04B05B7928AFD4F900789458 /* CityDetailsProtocols.swift in Sources */,
 				04B05B0D28AF9E7300789458 /* AppDelegate.swift in Sources */,
