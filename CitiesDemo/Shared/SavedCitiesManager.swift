@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class SaveCityModel{
     var name: String = ""
@@ -32,7 +33,8 @@ class SaveCityModel{
 class SavedCitiesManager{
     
     private var cities =  [SaveCityModel]()
-    
+    var offSet = 0
+    var fetchLimit = 50
     private var savePlaceRepo: CoreDataRepository<SavedCities>?
     
     init(savePlaceRepo: CoreDataRepository<SavedCities>? = nil) {
@@ -53,13 +55,30 @@ class SavedCitiesManager{
         return self.cities
     }
     
+    func getSavedBatchedCities() -> [SaveCityModel] {
+//        cities.removeAll()
+        let cities = savePlaceRepo?.getBatched(fetchOffSet: offSet, fetchLimit: fetchLimit)
+        for item in cities ?? [] {
+            var location = SaveCityModel()
+            location.lat = item.lat ?? ""
+            location.lng = item.lon ?? ""
+            location.name = item.name ?? ""
+            location.country = item.country ?? ""
+            self.cities.append(location)
+        }
+        offSet += fetchLimit
+        print("offset--->",offSet, "fetchLimit----->", fetchLimit)
+        return self.cities
+    }
+    
     func getCitiesCount() -> Int{
-        if let count = savePlaceRepo?.getAll()?.count{
+        if let count = savePlaceRepo?.getCount(){
+            print("saved entities count", count)
             return count
         }
         return 0
     }
-    
+
     func addNewCity(_ location: City?) {
         if let context = savePlaceRepo?.context {
             let savePlaceModel = SavedCities.init(context: context)
